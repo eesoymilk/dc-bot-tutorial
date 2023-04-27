@@ -15,11 +15,12 @@ def fetch_data(id: int):
 
 
 def main():
-    ids_to_fetch = (1, 2, 3)
-
-    for id in ids_to_fetch:
+    for id in range(1, 4):
         fetch_data(id)
 
 
 if __name__ == '__main__':
+    start = time.perf_counter()
     main()
+    end = time.perf_counter()
+    print(f'It took {end - start:.4f}s.')

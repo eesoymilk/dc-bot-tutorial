@@ -1,3 +1,4 @@
+import time
 import asyncio
 
 
@@ -16,14 +17,15 @@ async def fetch_data(id: int):
 
 
 async def main():
-    ids_to_fetch = (1, 2, 3)
-
     aws = []
-    for id in ids_to_fetch:
+    for id in range(1, 4):
         aws.append(fetch_data(id))
 
     await asyncio.gather(*aws)
 
 
 if __name__ == '__main__':
+    start = time.perf_counter()
     asyncio.run(main())
+    end = time.perf_counter()
+    print(f'It took {end - start:.4f}s.')
