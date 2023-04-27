@@ -48,15 +48,15 @@ async def add(intx: Interaction, num1: float, num2: float):
 
 
 @bot.tree.command()
-@app_commands.rename(msg='text')
-@app_commands.describe(msg='Text to send in the current channel')
+@app_commands.rename(msg='message')
+@app_commands.describe(msg='Message to send in the current channel')
 async def echo(intx: Interaction, msg: str):
-    """Sends the text into the current channel."""
+    """Sends the message into the current channel."""
     await intx.response.send_message(msg)
 
 
 @bot.tree.command()
-@app_commands.describe(member='The member you want to get the joined date from; defaults to the user who uses the command')
+@app_commands.describe(member='The member you want to get the avatar from; defaults to the user who uses the command')
 async def avatar(intx: Interaction, member: Optional[Member] = None):
     # If no member is explicitly provided then we use the command user here
     member = member or intx.user
@@ -64,7 +64,6 @@ async def avatar(intx: Interaction, member: Optional[Member] = None):
     await intx.response.send_message(member.display_avatar)
 
 
-# This context menu command only works on members
 @bot.tree.context_menu(name='Get Avatar')
 async def avatar_ctx_menu(intx: Interaction, member: Member):
     await intx.response.send_message(member.display_avatar)
