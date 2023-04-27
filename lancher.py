@@ -1,4 +1,5 @@
-import config
+import os
+from dotenv import load_dotenv
 from discord import Intents, Message
 from discord.ext.commands import Bot, Context
 
@@ -24,4 +25,11 @@ async def on_message(message: Message):
 async def hello(ctx: Context):
     await ctx.send("Hello, I'm your Discord bot!")
 
-bot.run(config.TOKEN)
+
+def main():
+    load_dotenv()
+    bot.run(os.getenv('TOKEN'))
+
+
+if __name__ == '__main__':
+    main()
